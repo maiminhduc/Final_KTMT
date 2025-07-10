@@ -3,11 +3,8 @@ module Imm_Gen(
     output logic [31:0] imm_out
 );
 
-    logic [6:0] opcode;
-    assign opcode = instruction[6:0];
-
     always_comb begin
-        case (opcode)
+        case (instruction[6:0])
             7'b0010011, 7'b0000011, 7'b1100111: // I-type
                 imm_out = {{20{instruction[31]}}, instruction[31:20]};
             7'b0100011: // S-type
